@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>消息爬虫</title>
+</head>
+<body>
+    {% autoescape None %}
+    <div>
+        <form method="POST" action="/">
+            请输入要查询的股票代码：<input type="text" name='StockNumber'><br>
+            <div>
+        <h1>公告信息：</h1>
+        <ul>
+            {%for i in x %}
+            <li>
+                {% if i.a!=None%}
+                <a href={{"http://guba.eastmoney.com"+i.a.get("href")}} >{{i.a.get('title')}}</a>
+                {% end %}
+            </li>
+            {% end %}
+        </ul>
+            
+            </div>
+            <div>
+                <hr>
+                <h1>龙虎榜单：</h1>
+                {{longhu}}
+                <hr>
+                {{longhu1}}
+            </div>
+            <hr>
+            <div>
+                <h1>个股新闻：</h1>
+                {{hangye}}
+                <hr>
+            </div>
+            <div>
+                <h1>机构当季持仓：</h1>
+                {{jigou}}
+            </div>
+        </form>
+    </div>
+    
+</body>
